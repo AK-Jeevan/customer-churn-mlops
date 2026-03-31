@@ -1,8 +1,10 @@
 __pycache__/
 *.pyc
 *.pyo
-*.pkl
 .git
 .venv
 venv/
 .DS_Store
+.gitignore
+mlruns/
+data/
