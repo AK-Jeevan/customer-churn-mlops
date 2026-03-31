@@ -15,9 +15,9 @@ class InputData(BaseModel):
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-model = joblib.load(os.path.join(BASE_DIR, "models", "model.pkl"))
+model = joblib.load(os.path.join(BASE_DIR, "best_model.joblib"))
 columns = joblib.load(os.path.join(BASE_DIR, "models", "columns.pkl"))
-
+scaler = joblib.load(os.path.join(BASE_DIR, "scaler.joblib"))
 
 @app.get("/")
 def home():
