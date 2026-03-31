@@ -20,10 +20,8 @@ class InputData(BaseModel):
 # Load artifacts
 # -------------------------------
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-model = joblib.load(os.path.join(BASE_DIR, "models", "model.pkl"))
-columns = joblib.load(os.path.join(BASE_DIR, "models", "columns.pkl"))
-scaler = joblib.load(os.path.join(BASE_DIR, "models", "scaler.pkl"))
+model = joblib.load(os.path.join(BASE_DIR, "best_model.joblib"))
+scaler = joblib.load(os.path.join(BASE_DIR, "scaler.joblib"))
 
 
 # -------------------------------
