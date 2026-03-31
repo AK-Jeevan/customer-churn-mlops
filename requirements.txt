@@ -5,3 +5,5 @@ mlflow
 fastapi
 uvicorn
 dvc
+imbalanced-learn
+xgboost

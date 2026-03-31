@@ -1,0 +1,23 @@
+artifact_path: file:///C:/Users/akjee/Documents/AI/MLOps/customer-churn-mlops/mlruns/1/models/m-9916616c71f948138e7f03ce0a93a266/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.11.9
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+mlflow_version: 3.10.1
+model_id: m-9916616c71f948138e7f03ce0a93a266
+model_size_bytes: 40494575
+model_uuid: m-9916616c71f948138e7f03ce0a93a266
+prompts: null
+run_id: 7d86449e13934dea89c34125ebcad562
+utc_time_created: '2026-03-30 17:20:51.010908'
