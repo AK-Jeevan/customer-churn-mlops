@@ -76,13 +76,6 @@ data/
 README.md
 docs/
 
-# Docker
-Dockerfile
-.dockerignore
-
-# CI/CD
-.github/
-
 # Temporary files
 *.tmp
 *.temp
