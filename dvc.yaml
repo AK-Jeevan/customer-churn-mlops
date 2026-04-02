@@ -5,4 +5,5 @@ stages:
     - data/customer_churn.csv
     - src/train.py
     outs:
-    - models/model.pkl
+    - best_model.joblib
+    - columns.pkl

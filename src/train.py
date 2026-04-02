@@ -140,9 +140,8 @@ def main():
         # -------------------------
         # Save locally
         # -------------------------
-        os.makedirs("models", exist_ok=True)
-        joblib.dump(best_model, "models/model.pkl")
-        joblib.dump(X.columns.tolist(), "models/columns.pkl")
+        joblib.dump(best_model, "best_model.joblib")
+        joblib.dump(X.columns.tolist(), "columns.pkl")
 
         print("\nModel saved successfully!")
 

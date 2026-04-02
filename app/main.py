@@ -21,7 +21,7 @@ class InputData(BaseModel):
 # -------------------------------
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 model = joblib.load(os.path.join(BASE_DIR, "best_model.joblib"))
-scaler = joblib.load(os.path.join(BASE_DIR, "scaler.joblib"))
+columns = joblib.load(os.path.join(BASE_DIR, "columns.pkl"))
 
 
 # -------------------------------
@@ -51,11 +51,8 @@ def predict(input_data: InputData):
         # 🔹 Reorder columns exactly as training
         df = df[columns]
 
-        # 🔹 Apply scaling
-        df_scaled = scaler.transform(df)
-
-        # 🔹 Predict probability
-        churn_proba = model.predict_proba(df_scaled)[0][1]
+        # 🔹 Predict probability (pipeline handles scaling)
+        churn_proba = model.predict_proba(df)[0][1]
 
         # 🔹 Threshold tuning
         threshold = 0.3
