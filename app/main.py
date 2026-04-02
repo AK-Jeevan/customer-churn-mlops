@@ -3,6 +3,14 @@ from pydantic import BaseModel
 import joblib
 import pandas as pd
 import os
+import logging
+import time
+
+logging.basicConfig(
+    filename="app.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 app = FastAPI()
 
@@ -31,6 +39,9 @@ columns = joblib.load(os.path.join(BASE_DIR, "columns.pkl"))
 def home():
     return {"message": "Churn Prediction API is running"}
 
+@app.get("/")
+def home():
+    return {"status": "healthy"}
 
 # -------------------------------
 # Prediction endpoint
@@ -39,6 +50,7 @@ def home():
 def predict(input_data: InputData):
     try:
         user_data = input_data.dict()
+        start_time = time.time()
 
         # Convert to DataFrame
         df = pd.DataFrame([user_data])
@@ -53,15 +65,22 @@ def predict(input_data: InputData):
 
         # 🔹 Predict probability (pipeline handles scaling)
         churn_proba = model.predict_proba(df)[0][1]
-
+        end_time = time.time()
+        latency = end_time - start_time
+        
         # 🔹 Threshold tuning
         threshold = 0.3
         prediction = 1 if churn_proba > threshold else 0
-
+        
+        logging.info(f"Input: {input_data}")
+        logging.info(f"Prediction: {prediction}")
+        logging.info(f"Latency: {latency}")
+        
         return {
-            "prediction": int(prediction),
+            "prediction": prediction,
             "churn_probability": float(churn_proba)
         }
 
     except Exception as e:
+        logging.error(f"Error occurred: {str(e)}")
         return {"error": str(e)}
